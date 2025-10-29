@@ -1,4 +1,8 @@
 # Byte-compiled / optimized / DLL files
+
+/results/ingestion_statistics.csv
+/results/query_statistics.csv
+
 __pycache__/
 *.py[codz]
 *$py.class
