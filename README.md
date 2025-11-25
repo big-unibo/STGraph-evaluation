@@ -16,7 +16,7 @@ This repository contains the evaluation pipelines and results of the following r
 
 ### Experiments reproducibility
 
-All data and figures are reproducible through Docker (no other mandatory dependencies required).
+All data and figures are reproducible through Docker.
 
 To reproduce the experiments, open a shell within the project folder and run:
    ```sh
