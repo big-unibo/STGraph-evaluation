@@ -11,7 +11,8 @@ This repository contains the evaluation pipelines and results of the following r
 - `/data`: contains experimental data mentioned in the article;
 - `/figures`: contains the article figures;
 - `/architectures`: contains the implementations of STGraph and its competitors;
-- `STGraph.ipynb`: Python notebook to reproduce articles figures from data.
+- `STGraph.ipynb`: Python notebook to reproduce articles figures from data;
+- `requirements.txt`: highlights the mandatory dependencies to run the postprocessing scripts.
 
 ### Experiments reproducibility
 
