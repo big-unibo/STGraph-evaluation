@@ -36,4 +36,6 @@ To reproduce scale-out experiments, follow the following steps:
 2. In the .env, update the `ASTERIXDB_CC_HOST` and `ASTERIXDB_NC_POOL` accordingly. Node controllers IPs must be separated by a comma (e.g., ASTERIXDB_NC_POOL=192.160.30.102,192.168.30.103)
 3. In the .env, set EVALUATION_SYSTEMS variable to 'dtgraph'
 4. Configure tests configuration accordingly in the .env (e.g., number of threads, dataset size).
-5. Run ```sh ./run_tests.sh```
+5. Run ```sh
+6. ./run_tests.sh
+7. ```
