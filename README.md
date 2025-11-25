@@ -48,7 +48,7 @@ A .devcontainer has been prepared to avoid installing the mandatory libraries in
 
 ## References
 
-Implementations for each of the evalued systems and benchmark dataset can be found at the following links:
+Implementations for each of the evalued systems and benchmark dataset can be found at the following GitHub repositories:
 
 - [STGraph](https://github.com/w4bo/dt-graph)
 - [AeonG](https://github.com/ManuelePasini/AeonG)
