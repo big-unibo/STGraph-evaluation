@@ -8,9 +8,9 @@ This repository contains the evaluation pipelines and results of the following r
 
 ## Getting Started
 ### Repository organization
-- `/data`: contains experimental data mentioned in the article
-- `/figures`: contains the article figures.
-- `/architectures`: contains the implementations of STGraph and its competitors.
+- `/data`: contains experimental data mentioned in the article;
+- `/figures`: contains the article figures;
+- `/architectures`: contains the implementations of STGraph and its competitors;
 - `STGraph.ipynb`: Python notebook to reproduce articles figures from data.
 
 ### Experiments reproducibility
@@ -30,4 +30,10 @@ Tests' results data which will then be available in the `/data` folder and appen
 
 #### Reproducing scale-out tests
 
-Scale-out tests are not directly reproducible due 
+Scale-out tests are not directly reproducible through Docker.
+To reproduce scale-out experiments, follow the following steps:
+1. Deploy an AsterixDB cluster following the (official documentation)[https://asterixdb.apache.org/docs/0.9.9/ncservice.html].
+2. In the .env, update the `ASTERIXDB_CC_HOST` and `ASTERIXDB_NC_POOL` accordingly. Node controllers IPs must be separated by a comma (e.g., ASTERIXDB_NC_POOL=192.160.30.102,192.168.30.103)
+3. In the .env, set EVALUATION_SYSTEMS variable to 'dtgraph'
+4. Configure tests configuration accordingly in the .env (e.g., number of threads, dataset size).
+5. Run ```sh ./run_tests.sh```
