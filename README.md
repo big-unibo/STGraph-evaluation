@@ -1,4 +1,4 @@
-# STGraph - something for someone
+# STGraph - Something for Someone
 
 ## Research papers
 
@@ -37,5 +37,4 @@ To reproduce scale-out experiments, follow the following steps:
 3. In the .env, set EVALUATION_SYSTEMS variable to 'dtgraph'
 4. Configure tests configuration accordingly in the .env (e.g., number of threads, dataset size).
 5. Run ```sh
-6. ./run_tests.sh
-7. ```
+./run_tests.sh ```
