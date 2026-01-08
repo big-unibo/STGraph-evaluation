@@ -10,6 +10,8 @@ services:
       - |
         opt/local/bin/start-sample-cluster.sh
         tail -f /dev/null
+    volumes:
+      - "./volumes/asterixdb_conf/:/workspace/apache-asterixdb-0.9.9/opt/local/conf/"
     ports:
       - 19006:19006
       - 19002:19002
@@ -24,9 +26,9 @@ services:
     container_name: stgraph
     volumes:
       - "./../results:/dt_graph/results"
-      - "./time_constraints.yaml:/dt_graph/constraints/time_constraints.yaml"
-    env_file:      
-      - .env
+      - "./volumes/time_constraints.yaml:/dt_graph/constraints/time_constraints.yaml"
+    env_file:
+      - ./../.env  
     depends_on:
       - asterixdb
     command:

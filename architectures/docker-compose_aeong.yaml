@@ -8,8 +8,10 @@ services:
       - ./../.env  
     volumes:
       - ./../results/aeong:/home/AeonG/tests/results/aeong/query_results
+      - ./volumes/time_constraints.yaml:/vol/time_constraints.yaml
     command:
       - /bin/bash
       - -c
       - |
+        cp /vol/time_constraints.yaml /home/AeonG/tests/experiments/
         ./t_smarbench_test.sh
