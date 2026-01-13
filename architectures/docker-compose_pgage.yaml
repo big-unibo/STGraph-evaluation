@@ -20,12 +20,12 @@ services:
       - 5432:5432
 
   dtgraph:
-    image: mp4sini/pgage-smartbench:latest
-    hostname: pgage-smartbench
-    container_name: pgage-smartbench
+    image: mp4sini/pgage_eval:latest
+    hostname: pgage_eval
+    container_name: pgage_eval
     volumes:
-      - "./../data:/dt_graph/results"
-      - "./volumes/time_constraints.yaml:/dt_graph/constraints/time_constraints.yaml"
+      - "./../data:/src/results"
+      - "./volumes/time_constraints_tstamp.yaml:/constraints/time_constraints.yaml"
     env_file:
       - ./../.env  
     depends_on:
@@ -37,5 +37,5 @@ services:
         ./wait-for-it.sh pgage:5432 -t 90 -- echo "PostgreSQL running, starting to ingest data..."
         chmod +x scripts/download_dataset.sh
         chmod +x scripts/run_smartbench_evaluation.sh
-        cp ./constraints/time_constraints.yaml src/main/resources/time_constraints.yaml
+        cp ./constraints/time_constraints.yaml /src/main/resources/queries/time_constraints.yaml
         ./scripts/run_smartbench_evaluation.sh

@@ -26,7 +26,7 @@ services:
     container_name: stgraph
     volumes:
       - "./../data:/dt_graph/results"
-      - "./volumes/time_constraints.yaml:/dt_graph/constraints/time_constraints.yaml"
+      - "./volumes/time_constraints_tstamp.yaml:/dt_graph/constraints/time_constraints.yaml"
     env_file:
       - ./../.env  
     depends_on:

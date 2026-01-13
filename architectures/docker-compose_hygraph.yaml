@@ -8,6 +8,7 @@ services:
       - ./../.env
     volumes:
       - "./../data:/hygraph/results"
+      - "./volumes/time_constraints_tstamp.yaml:/dt_graph/constraints/time_constraints.yaml"
     command:
       - /bin/bash
       - -c
