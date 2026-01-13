@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: psw
-      POSTGRES_DB: test_postgres_graphs
+      POSTGRES_DB: smartbench_eval
     container_name: pgage
     # command:
     #   - /bin/bash
@@ -19,23 +19,24 @@ services:
     ports:
       - 5432:5432
 
-  dtgraph:
+  pgage_eval:
     image: mp4sini/pgage_eval:latest
     hostname: pgage_eval
     container_name: pgage_eval
     volumes:
-      - "./../data:/src/results"
+      - "./../data:/pgage/src/results"
       - "./volumes/time_constraints_tstamp.yaml:/constraints/time_constraints.yaml"
     env_file:
-      - ./../.env  
+      - ./../.env 
     depends_on:
-      - asterixdb
+      - pgage
     command:
       - /bin/bash
       - -c
       - |
+
         ./wait-for-it.sh pgage:5432 -t 90 -- echo "PostgreSQL running, starting to ingest data..."
         chmod +x scripts/download_dataset.sh
         chmod +x scripts/run_smartbench_evaluation.sh
-        cp ./constraints/time_constraints.yaml /src/main/resources/queries/time_constraints.yaml
+        cp /constraints/time_constraints.yaml /src/main/resources/queries/
         ./scripts/run_smartbench_evaluation.sh
