@@ -7,7 +7,7 @@ services:
     env_file:
       - ./../.env
     volumes:
-      - "./../results:/hygraph/results"
+      - "./../data:/hygraph/results"
     command:
       - /bin/bash
       - -c
