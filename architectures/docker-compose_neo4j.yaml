@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   neo4j:
-    image: mp4sini/neo4j:latest
+    image: mp4sini/neo4j_smartbench:latest
     hostname: neo4j
     container_name: neo4j
     env_file:
