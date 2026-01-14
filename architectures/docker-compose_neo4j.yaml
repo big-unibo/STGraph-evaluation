@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  neo4j:
+    image: mp4sini/neo4j:latest
+    hostname: neo4j
+    container_name: neo4j
+    env_file:
+      - ./../.env
+    volumes:
+      - ./../data/neo4j:/home/neo4j/tests/results/neo4j/
+      - ./volumes/time_constraints.yaml:/vol/time_constraints.yaml
+      - ./volumes/neo4j_conf/:/conf
+    command:
+      - /bin/bash
+      - -c
+      - |
+        cp /vol/time_constraints.yaml /neo4j/neo4j/queries/
+        cp /conf/neo4j.conf /var/lib/neo4j/conf/
+        cp /conf/neo4j-admin.conf /var/lib/neo4j/conf/
+        ./neo4j/scripts/run_smartbench_evaluation.sh
