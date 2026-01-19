@@ -16,4 +16,4 @@ services:
         cp /cons/time_constraints.yaml /hygraph/resources
         chmod +x scripts/run_evaluation.sh.sh
         chmod +x scripts/download_dataset.sh
-        ./scripts/run_evaluation.sh.sh
+        ./scripts/run_evaluation.sh
