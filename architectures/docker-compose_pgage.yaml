@@ -3,20 +3,14 @@ services:
   pgage:
     image: mp4sini/pgage:latest
     container_name: pgage
-    hostname: pgage
     environment:
-      POSTGRES_USER: postgres
+      POSTGRES_USER: $POSTGRES_USER
       POSTGRES_PASSWORD: psw
       POSTGRES_DB: smartbench_eval
+      PGDATA: /home/postgres/pgdata/data
     volumes:
-      - "./volumes/postgresql/postgresql.conf:/pgconf/"
-    command:
-      - /bin/bash
-      - -c
-      - |
-          cp /pgconf/postgresql.conf /home/postgres/pgdata/data/postgresql.conf
-          postgres
-
+      - "./volumes/postgresq_conf:/pgconf"
+    command: ["-c", "config_file=/pgconf/postgresql.conf"]
     ports:
       - 5432:5432
 
