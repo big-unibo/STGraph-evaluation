@@ -2,20 +2,21 @@ version: "3.9"
 services:
   pgage:
     image: mp4sini/pgage:latest
+    container_name: pgage
     hostname: pgage
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: psw
       POSTGRES_DB: smartbench_eval
-    container_name: pgage
-    # command:
-    #   - /bin/bash
-    #   - -c
-    #   - |
-    #     opt/local/bin/start-sample-cluster.sh
-    #     tail -f /dev/null
-    # volumes:
-    #   - "./volumes/asterixdb_conf/:/workspace/apache-asterixdb-0.9.9/opt/local/conf/"
+    volumes:
+      - "./volumes/postgresql/postgresql.conf:/pgconf/"
+    command:
+      - /bin/bash
+      - -c
+      - |
+          cp /pgconf/postgresql.conf /home/postgres/pgdata/data/postgresql.conf
+          postgres
+
     ports:
       - 5432:5432
 
@@ -34,9 +35,9 @@ services:
       - /bin/bash
       - -c
       - |
-
         ./wait-for-it.sh pgage:5432 -t 90 -- echo "PostgreSQL running, starting to ingest data..."
         chmod +x scripts/download_dataset.sh
         chmod +x scripts/run_smartbench_evaluation.sh
-        cp /constraints/time_constraints.yaml /src/main/resources/queries/
+        cp /constraints/time_constraints.yaml /pgage/src/main/resources/queries
+        sleep 20
         ./scripts/run_smartbench_evaluation.sh
