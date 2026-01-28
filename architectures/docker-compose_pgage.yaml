@@ -9,7 +9,7 @@ services:
       POSTGRES_DB: smartbench_eval
       PGDATA: /home/postgres/pgdata/data
     volumes:
-      - "./volumes/postgresq_conf:/pgconf"
+      - "./volumes/conf/postgresq_conf:/pgconf"
     command: ["-c", "config_file=/pgconf/postgresql.conf"]
     ports:
       - 5432:5432
@@ -21,8 +21,9 @@ services:
     volumes:
       - "./../data:/pgage/src/results"
       - "./volumes/time_constraints_tstamp.yaml:/constraints/time_constraints.yaml"
+      - "./volumes/queries/pgage:/pgage/src/main/resources/queries"
     env_file:
-      - ./../.env 
+      - ./../.env
     depends_on:
       - pgage
     command:

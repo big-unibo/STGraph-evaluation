@@ -9,6 +9,7 @@ services:
     volumes:
       - ./../data/aeong:/home/AeonG/tests/results/aeong/
       - ./volumes/time_constraints_commit.yaml:/vol/time_constraints.yaml
+      - ./volumes/queries/aeong:/home/AeonG/tests/results/temporal_query
     command:
       - /bin/bash
       - -c

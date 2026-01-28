@@ -13,7 +13,8 @@ services:
     volumes:
       - ./../data/neo4j:/neo4j/neo4j/tests/results/neo4j/
       - ./volumes/time_constraints_tstamp.yaml:/vol/time_constraints.yaml
-      - ./volumes/neo4j_conf/:/conf
+      - ./volumes/conf/neo4j_conf/:/conf
+      - ./volumes/queries/neo4j:/neo4j/neo4j/resources/queries
     command: >
       /bin/bash -c "
         # Copia file di configurazione in directory scrivibili
@@ -27,7 +28,7 @@ services:
 
         # Attendere che Neo4j sia pronto (opzionale, 10 sec)
         sleep 10 &&
-        
+
         tail -f /dev/null 
 
         # Avvio SmartBench
