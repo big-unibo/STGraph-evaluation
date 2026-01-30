@@ -1,2 +1,3 @@
 test_id,model,startTimestamp,endTimestamp,dataset,datasetSize,threads,graphElapsedTime,tsElapsedTime,elapsedTime,numMachines,storage,iteration
 f61209be-0a38-4e0b-a189-cf07c93ff8df,Neo4J,1758034886,1758034901.0,smartbench,small,1,60114,43378633,43438747,1,-1,0
+2f63fc34-ace8-4d7a-a473-22dde3534488,Neo4J,1769607215.2363265,1769608589.5836377,smartbench,large,1,632345,735063,1367409,1,-1

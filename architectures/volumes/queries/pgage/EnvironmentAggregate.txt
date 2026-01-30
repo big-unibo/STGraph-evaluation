@@ -1,20 +1,30 @@
-WITH env_device AS (
+WITH graph_topology AS (
     SELECT *
-    FROM cypher(
-        'smartbench_graph', $$
-            MATCH (tempe:Temperature)-[:hasTemperature]-(device:Sensor)-[:hasCoverage]-(environment:Infrastructure)
-            RETURN DISTINCT environment.id AS environment_id,
-                            device.id AS device_id
-        $$) AS (environment_id text, device_id text)
+    FROM cypher('smartbench_graph', $$
+        MATCH (it:InfrastructureType)<-[:hasType_]-(environment:Infrastructure)<-[:hasCoverage]-(device:Sensor),
+              (device)-[:hasOwner]->(owner:User)<-[:hasOwner]-(platform:Platform)-[:hasType_]->(platformType:PlatformType)
+        RETURN platformType.id AS platformTypeId,
+               owner.id        AS ownerId,
+               environment.id  AS environmentId,
+               device.id       AS device_id
+    $$) AS (
+        platformTypeId text,
+        ownerId text,
+        environmentId text,
+        device_id text
+    )
 )
 SELECT
-    env_device.environment_id,
-    env_device.device_id,
-    AVG(public.measurements.val) AS avg_temperature
-FROM env_device
-JOIN public.measurements
-    ON public.measurements.sensor_id = env_device.device_id
-WHERE public.measurements.time
-		 BETWEEN to_timestamp({TSTAMPFROM_PARAM} / 1000.0)
-          AND to_timestamp({TSTAMPTO_PARAM} / 1000.0)
-GROUP BY env_device.environment_id, env_device.device_id;
+    gt.platformTypeId,
+    gt.ownerId,
+    gt.environmentId,
+    AVG(m.val) AS avgValue
+FROM graph_topology gt
+JOIN public.measurements m
+    ON m.sensor_id = gt.device_id
+WHERE m.time >= to_timestamp({TSTAMPFROM_PARAM} / 1000.0)
+  AND m.time < to_timestamp({TSTAMPTO_PARAM} / 1000.0)
+GROUP BY
+    gt.platformTypeId,
+    gt.ownerId,
+    gt.environmentId;
