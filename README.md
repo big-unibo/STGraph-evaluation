@@ -57,4 +57,5 @@ Implementations for each of the evalued systems and benchmark dataset can be fou
 - [STGraph](https://github.com/w4bo/dt-graph)
 - [AeonG](https://github.com/ManuelePasini/AeonG)
 - [HyGraph](https://github.com/dbs-leipzig/HyGraph-package)
+- [PGAge, Neo4J](https://github.com/ManuelePasini/digital_twins_architectures)
 - [SmartBench](https://github.com/ManuelePasini/smart_benchmark)
