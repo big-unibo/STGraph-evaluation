@@ -29,7 +29,7 @@ The .env file can be modified accordingly w.r.t. the configuration to be tested.
 Tests' results data which will then be available in the `/data` folder and appended to previous experiments' results.
 
 #### WARNING
-Tests on the "big" dataset take a considerate amount of resources, in terms of both storage and time.
+Tests on the "large" dataset take a considerate amount of resources, in terms of both storage and time.
 We reccomend to run such tests on different machines to parallelize the workload.
 
 #### Reproducing scale-out tests
