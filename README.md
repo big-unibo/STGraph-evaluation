@@ -30,6 +30,7 @@ Tests' results data which will then be available in the `/data` folder and appen
 
 #### WARNING
 Tests on the "large" dataset take a considerate amount of resources, in terms of both storage and time.
+For the "large" dataset, make sure at least 300 GB of storage are available in the Docker data folder.
 We reccomend to run such tests on different machines to parallelize the workload.
 
 #### Reproducing scale-out tests
